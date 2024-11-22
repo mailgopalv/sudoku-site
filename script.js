@@ -1,50 +1,49 @@
 // Function to generate a random Sudoku puzzle
 function generateSudoku() {
     let board = Array.from({ length: 9 }, () => Array(9).fill(0));
-  
-    // Recursive backtracking function to fill the board
-    function isValid(board, row, col, num) {
-      for (let i = 0; i < 9; i++) {
-        if (board[row][i] === num || board[i][col] === num) {
+    solve(board);
+    return board;
+  }
+
+  function solve(board) {
+    for (let row = 0; row < 9; row++) {
+      for (let col = 0; col < 9; col++) {
+        if (board[row][col] === 0) {
+          for (let num = 1; num <= 9; num++) {
+            if (isValid(board, row, col, num)) {
+              board[row][col] = num;
+              if (solve(board)) {
+                return true;
+              }
+              board[row][col] = 0; // Backtrack
+            }
+          }
           return false;
         }
       }
-  
-      let boxRow = Math.floor(row / 3) * 3;
-      let boxCol = Math.floor(col / 3) * 3;
-      for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++) {
-          if (board[boxRow + i][boxCol + j] === num) {
-            return false;
-          }
+    }
+    return true;
+  }
+
+  // Recursive backtracking function to fill the board
+  function isValid(board, row, col, num) {
+    for (let i = 0; i < 9; i++) {
+      if (board[row][i] === num || board[i][col] === num) {
+        return false;
+      }
+    }
+
+    let boxRow = Math.floor(row / 3) * 3;
+    let boxCol = Math.floor(col / 3) * 3;
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        if (board[boxRow + i][boxCol + j] === num) {
+          return false;
         }
       }
-  
-      return true;
     }
-  
-    function solve(board) {
-      for (let row = 0; row < 9; row++) {
-        for (let col = 0; col < 9; col++) {
-          if (board[row][col] === 0) {
-            for (let num = 1; num <= 9; num++) {
-              if (isValid(board, row, col, num)) {
-                board[row][col] = num;
-                if (solve(board)) {
-                  return true;
-                }
-                board[row][col] = 0; // Backtrack
-              }
-            }
-            return false;
-          }
-        }
-      }
-      return true;
-    }
-  
-    solve(board);
-    return board;
+
+    return true;
   }
   
   // Function to remove numbers and create a puzzle
