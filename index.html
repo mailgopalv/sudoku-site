@@ -3,24 +3,118 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sudoku Solver</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Sudoku Solver for Kids</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f9f9f9;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      color: #ff6347;
+      font-size: 3em;
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #ffdd57;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ffab00;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(9, 50px);
+      grid-gap: 5px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    input[type="number"] {
+      width: 50px;
+      height: 50px;
+      font-size: 1.5em;
+      text-align: center;
+      border-radius: 5px;
+      border: 2px solid #ff6347;
+      background-color: #fff;
+      transition: all 0.2s ease;
+    }
+
+    input[type="number"]:disabled {
+      background-color: #e0e0e0;
+      color: #777;
+    }
+
+    input[type="number"]:focus {
+      border: 2px solid #ffab00;
+      outline: none;
+    }
+
+    .buttons {
+      margin-top: 30px;
+    }
+
+    .buttons button {
+      margin: 10px;
+    }
+
+    .grid-container {
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .grid-container p {
+      font-size: 1.2em;
+      color: #ff6347;
+    }
+  </style>
 </head>
 <body>
-  <h1>Sudoku Solver</h1>
-  <div class="grid">
-    <!-- 9x9 Grid -->
-    <script>
-      for (let i = 0; i < 81; i++) {
-        document.write(`<input type="number" min="1" max="9" id="cell-${i}">`);
-      }
-    </script>
+
+  <h1>Sudoku Solver for Kids</h1>
+  
+  <!-- The grid container -->
+  <div class="grid-container">
+    <p>Fill in the Sudoku puzzle! Press "Solve" if you need help!</p>
+    
+    <!-- Button to generate a new puzzle -->
+    <button id="generatePuzzle">Generate New Puzzle</button>
+
+    <!-- Sudoku Grid -->
+    <div class="grid">
+      <script>
+        for (let i = 0; i < 81; i++) {
+          document.write(`<input type="number" min="1" max="9" id="cell-${i}">`);
+        }
+      </script>
+    </div>
+
+    <!-- Buttons for Check and Solve -->
+    <div class="buttons">
+      <button id="check">Check Solution</button>
+      <button id="solve">Solve Puzzle</button>
+    </div>
   </div>
-  <button id="generatePuzzle">Generate New Puzzle</button>
-  <div class="buttons">
-    <button id="check">Check</button>
-    <button id="solve">Solve</button>
-  </div>
+
   <script src="script.js"></script>
 </body>
 </html>

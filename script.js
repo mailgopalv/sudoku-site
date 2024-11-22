@@ -97,6 +97,49 @@ function generateSudoku() {
     }
   }
   
+  // Check if the user’s grid is valid
+  function checkSolution() {
+    let board = [];
+    for (let i = 0; i < 9; i++) {
+      board[i] = [];
+      for (let j = 0; j < 9; j++) {
+        let cell = document.getElementById(`cell-${i * 9 + j}`).value;
+        board[i][j] = cell ? parseInt(cell) : 0;
+      }
+    }
+  
+    // Check for validity in rows, columns, and 3x3 boxes
+    for (let row = 0; row < 9; row++) {
+      for (let col = 0; col < 9; col++) {
+        let num = board[row][col];
+        if (num !== 0 && !isValid(board, row, col, num)) {
+          alert("Your solution is incorrect!");
+          return;
+        }
+      }
+    }
+    alert("Congratulations, your solution is correct!");
+  }
+  
+  // Solve the puzzle using backtracking
+  function solvePuzzle() {
+    let board = [];
+    for (let i = 0; i < 9; i++) {
+      board[i] = [];
+      for (let j = 0; j < 9; j++) {
+        let cell = document.getElementById(`cell-${i * 9 + j}`).value;
+        board[i][j] = cell ? parseInt(cell) : 0;
+      }
+    }
+  
+    // Solve the puzzle
+    if (solve(board)) {
+      displayPuzzle(board);
+    } else {
+      alert("No solution exists!");
+    }
+  }
+  
   // Event listener for the "Generate New Puzzle" button
   document.getElementById('generatePuzzle').addEventListener('click', () => {
     const completeBoard = generateSudoku();
@@ -104,12 +147,9 @@ function generateSudoku() {
     displayPuzzle(puzzle);
   });
   
-  // Event listeners for the "Check" and "Solve" buttons (to be implemented)
-  document.getElementById('check').addEventListener('click', () => {
-    alert('Check logic goes here!');
-  });
+  // Event listener for the "Check" button
+  document.getElementById('check').addEventListener('click', checkSolution);
   
-  document.getElementById('solve').addEventListener('click', () => {
-    alert('Solve logic goes here!');
-  });
+  // Event listener for the "Solve" button
+  document.getElementById('solve').addEventListener('click', solvePuzzle);
   
