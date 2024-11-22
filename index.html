@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sudoku Solver</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Sudoku Solver</h1>
+  <div class="grid">
+    <!-- 9x9 Grid -->
+    <script>
+      for (let i = 0; i < 81; i++) {
+        document.write(`<input type="number" min="1" max="9" id="cell-${i}">`);
+      }
+    </script>
+  </div>
+  <div class="buttons">
+    <button id="check">Check</button>
+    <button id="solve">Solve</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
