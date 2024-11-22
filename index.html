@@ -63,7 +63,8 @@
         margin-top: 20px;
       }
   
-      input[type="number"] {
+      /* Add border for 3x3 subgrids */
+      .grid input[type="number"] {
         width: 60px;
         height: 60px;
         font-size: 2em;
@@ -74,11 +75,27 @@
         transition: all 0.2s ease;
       }
   
-      input[type="number"]:disabled {
-        background-color: #e0e0e0;
-        color: #777;
+      /* 3x3 subgrid borders */
+      .grid input:nth-child(3n), 
+      .grid input:nth-child(3n+1) {
+        border-right: 3px solid #ff1493;
       }
   
+      .grid input:nth-child(9n), 
+      .grid input:nth-child(9n+3), 
+      .grid input:nth-child(9n+6) {
+        border-bottom: 3px solid #ff1493;
+      }
+  
+      .grid input:nth-child(27n+1),
+      .grid input:nth-child(27n+3),
+      .grid input:nth-child(27n+5),
+      .grid input:nth-child(27n+7),
+      .grid input:nth-child(27n+9) {
+        border-right: 5px solid #ff1493;
+      }
+  
+      /* Focus effect */
       input[type="number"]:focus {
         border: 3px solid #ffeb3b;
         outline: none;
@@ -94,7 +111,7 @@
         font-size: 1.5em;
       }
   
-      /* Add some extra decoration */
+      /* Emoji and Puzzle Info */
       .emoji {
         font-size: 4em;
         margin-top: 20px;
@@ -107,33 +124,12 @@
         margin-top: 10px;
       }
   
-      /* Create an animated bouncing cloud effect for decoration */
-      .clouds {
-        position: absolute;
-        top: 10%;
-        left: 20%;
-        z-index: -1;
-      }
-  
-      /* Animations for the grid */
-      @keyframes bounce {
-        0% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-        100% { transform: translateY(0); }
-      }
-  
-      .grid input[type="number"] {
-        animation: bounce 1s infinite ease-in-out;
-      }
-  
       /* Mobile-first responsive design using media queries */
       @media screen and (max-width: 768px) {
-        /* Adjust main title size */
         h1 {
           font-size: 2.5em;
         }
   
-        /* Adjust grid for smaller screens */
         .grid {
           grid-template-columns: repeat(9, 50px);
           grid-gap: 5px;
@@ -145,7 +141,6 @@
           font-size: 1.5em;
         }
   
-        /* Adjust button size */
         button {
           padding: 10px 20px;
           font-size: 1.2em;
@@ -159,21 +154,17 @@
           font-size: 3em;
         }
   
-        /* Make puzzle container fit better */
         .grid-container {
           width: 90%;
           padding: 20px;
         }
   
-        /* Adjust margins and padding */
         .puzzle-info {
           font-size: 1em;
         }
       }
   
-      /* Extra small screens (e.g., smartphones) */
       @media screen and (max-width: 480px) {
-        /* Further adjustments for very small screens */
         h1 {
           font-size: 2em;
         }
@@ -204,6 +195,7 @@
       }
     </style>
   </head>
+  
   
 <body>
 
